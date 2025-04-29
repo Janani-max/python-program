@@ -1,0 +1,11 @@
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        res = []
+        sliding = deque()
+        for x in nums:
+            if len(sliding) >= k:
+                res.append(max(sliding))
+                sliding.popleft() # takes O(1) as deque is a DLL
+            sliding.append(x)
+        res.append(max(sliding))
+        return res
