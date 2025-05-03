@@ -1,0 +1,13 @@
+class NestedIterator(object):
+    def __init__(self, nestedList):
+        f = lambda x: [x.getInteger()] if x.isInteger() else sum((f(y) for y in x.getList()), [])
+        self.data = sum((f(x) for x in nestedList), [])
+        self.i = 0
+
+    def next(self):
+        r = self.data[self.i]
+        self.i += 1
+        return r
+
+    def hasNext(self):
+        return self.i < len(self.data)
